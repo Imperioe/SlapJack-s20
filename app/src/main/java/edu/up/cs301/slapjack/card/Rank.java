@@ -1,4 +1,4 @@
-package edu.up.cs301.card;
+package edu.up.cs301.slapjack.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;

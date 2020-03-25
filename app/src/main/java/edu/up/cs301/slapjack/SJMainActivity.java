@@ -2,12 +2,15 @@ package edu.up.cs301.slapjack;
 
 import java.util.ArrayList;
 
-import edu.up.cs301.card.Card;
 import edu.up.cs301.game.GameFramework.GameMainActivity;
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.game.GameFramework.infoMessage.GameState;
+import edu.up.cs301.game.GameFramework.players.GamePlayer;
 import edu.up.cs301.game.GameFramework.LocalGame;
 import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
 import edu.up.cs301.game.GameFramework.gameConfiguration.GamePlayerType;
+import edu.up.cs301.slapjack.players.SJComputerPlayer;
+import edu.up.cs301.slapjack.players.SJHumanPlayer;
+
 import android.graphics.Color;
 
 /**
@@ -77,7 +80,7 @@ public class SJMainActivity extends GameMainActivity {
 	}//createDefaultConfig
 
 	@Override
-	public LocalGame createLocalGame() {
+	public LocalGame createLocalGame(GameState gameState) {
 		return new SJLocalGame();
 	}
 }

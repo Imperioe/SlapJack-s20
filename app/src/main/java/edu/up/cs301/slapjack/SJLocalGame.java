@@ -1,11 +1,12 @@
 package edu.up.cs301.slapjack;
 
 import android.util.Log;
-import edu.up.cs301.card.Rank;
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.slapjack.card.Rank;
+import edu.up.cs301.game.GameFramework.players.GamePlayer;
 import edu.up.cs301.game.GameFramework.LocalGame;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
+import edu.up.cs301.slapjack.infoMessage.SJState;
+import edu.up.cs301.slapjack.sjActionMessage.SJMoveAction;
 
 /**
  * The LocalGame class for a slapjack game.  Defines and enforces
@@ -17,16 +18,13 @@ import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
 
 public class SJLocalGame extends LocalGame {
 
-    // the game's state
-    SJState state;
-
     /**
      * Constructor for the SJLocalGame.
      */
     public SJLocalGame() {
         Log.i("SJLocalGame", "creating game");
         // create the state for the beginning of the game
-        state = new SJState();
+        super.state = new SJState();
     }
 
 
@@ -39,11 +37,11 @@ public class SJLocalGame extends LocalGame {
     @Override
     protected String checkIfGameOver() {
     	
-    	if (state.getDeck(2).size() > 0) {
+    	if (((SJState)state).getDeck(2).size() > 0) {
     		// there are cards in the middle pile
-    		if (state.getDeck(0).size() == 0 &&
-    				state.getDeck(1).size() == 0 &&
-    				state.getDeck(2).peekAtTopCard().getRank() != Rank.JACK) {
+    		if (((SJState)state).getDeck(0).size() == 0 &&
+					((SJState)state).getDeck(1).size() == 0 &&
+					((SJState)state).getDeck(2).peekAtTopCard().getRank() != Rank.JACK) {
     			// All the cards have ended up in the middle pile, and the top card
     			// is not a Jack. This situation is a draw, since the only move a player
     			// would would be to slap the top card, causing his opponent to win.
@@ -55,11 +53,11 @@ public class SJLocalGame extends LocalGame {
     			return null;
     		}
     	}
-    	else if (state.getDeck(0).size() <= 0) {
+    	else if (((SJState)state).getDeck(0).size() <= 0) {
     		// player 1 has all the cards
     		return this.playerNames[1]+" is the winner";
     	}
-    	else if (state.getDeck(1).size() <= 0) {
+    	else if (((SJState)state).getDeck(1).size() <= 0) {
     		// player 0 has all the cards
     		return this.playerNames[0]+" is the winner";
     	}
@@ -86,7 +84,7 @@ public class SJLocalGame extends LocalGame {
 
 		// make a copy of the state; null out all cards except for the
 		// top card in the middle deck
-		SJState stateForPlayer = new SJState(state); // copy of state
+		SJState stateForPlayer = new SJState(((SJState)state)); // copy of state
 		stateForPlayer.nullAllButTopOf2(); // put nulls except for visible card
 		
 		// send the modified copy of the state to the player
@@ -100,14 +98,14 @@ public class SJLocalGame extends LocalGame {
 	 * 		the player-number of the player in question
 	 */
 	protected boolean canMove(int playerIdx) {
-		if (playerIdx < 0 || playerIdx > 1) {
+		if (playerIdx < 0 || playerIdx > 1 || checkIfGameOver() != null) {
 			// if our player-number is out of range, return false
 			return false;
 		}
 		else {
 			// player can move if it's their turn, or if the middle deck is non-empty
 			// so they can slap
-			return state.getDeck(2).size() > 0 || state.toPlay() == playerIdx;
+			return ((SJState)state).getDeck(2).size() > 0 || ((SJState)state).toPlay() == playerIdx;
 		}
 	}
 
@@ -137,11 +135,11 @@ public class SJLocalGame extends LocalGame {
 
 		if (sjma.isSlap()) {
 			// if we have a slap 
-			if (state.getDeck(2).size() == 0) {
+			if (((SJState)state).getDeck(2).size() == 0) {
 				// empty deck: return false, as move is illegal
 				return false;
 			}
-			else if (state.getDeck(2).peekAtTopCard().getRank() == Rank.JACK){
+			else if (((SJState)state).getDeck(2).peekAtTopCard().getRank() == Rank.JACK){
 				// a Jack was slapped: give all cards to slapping player
 				giveMiddleCardsToPlayer(thisPlayerIdx);
 			}
@@ -151,17 +149,17 @@ public class SJLocalGame extends LocalGame {
 			}
 		}
 		else if (sjma.isPlay()) { // we have a "play" action
-			if (thisPlayerIdx != state.toPlay()) {
+			if (thisPlayerIdx != ((SJState)state).toPlay()) {
 				// attempt to play when it's the other player's turn
 				return false;
 			}
 			else {
 				// it's the correct player's turn: move the top card from the
 				// player's deck to the top of the middle deck
-				state.getDeck(thisPlayerIdx).moveTopCardTo(state.getDeck(2));
+				((SJState)state).getDeck(thisPlayerIdx).moveTopCardTo(((SJState)state).getDeck(2));
 				// if the opponent has any cards, make it the opponent's move
-				if (state.getDeck(1-thisPlayerIdx).size() > 0) {
-					state.setToPlay(1-thisPlayerIdx);
+				if (((SJState)state).getDeck(1-thisPlayerIdx).size() > 0) {
+					((SJState)state).setToPlay(1-thisPlayerIdx);
 				}
 			}
 		}
@@ -185,9 +183,18 @@ public class SJLocalGame extends LocalGame {
 		if (idx < 0 || idx > 1) return;
 		
 		// move all cards from the middle deck to the target deck
-		state.getDeck(2).moveAllCardsTo(state.getDeck(idx));
+		((SJState)state).getDeck(2).moveAllCardsTo(((SJState)state).getDeck(idx));
 		
 		// shuffle the target deck
-		state.getDeck(idx).shuffle();
+		((SJState)state).getDeck(idx).shuffle();
+	}
+
+	//TESTING
+
+	public int whoWon(){
+		String gameOver = checkIfGameOver();
+		if(gameOver == null || gameOver.equals("game is a draw")) return -1;
+		if(gameOver.equals(playerNames[0]+" is the winner")) return 0;
+		return 1;
 	}
 }

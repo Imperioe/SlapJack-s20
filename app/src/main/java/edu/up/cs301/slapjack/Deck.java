@@ -3,7 +3,9 @@ package edu.up.cs301.slapjack;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import edu.up.cs301.card.Card;
+import edu.up.cs301.slapjack.card.Card;
+
+import static edu.up.cs301.game.GameFramework.utilities.EqualityMethods.arrayEquals;
 
 /**
  * Deck class - represents a deck of cards (not necessarily a full one)
@@ -231,5 +233,12 @@ public class Deck implements Serializable {
 		// surround by brackets and retuirn
 		rtnVal = "[" + rtnVal + " ]";
 		return rtnVal;
+	}
+
+	public boolean equals(Object object){
+		if(! (object instanceof Deck)) return false;
+		Deck deck = (Deck) object;
+		if(arrayEquals(this.cards.toArray(),deck.cards.toArray())) return true;
+		return false;
 	}
 }

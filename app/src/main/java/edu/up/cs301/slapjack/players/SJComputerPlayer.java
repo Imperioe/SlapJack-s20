@@ -1,11 +1,13 @@
-package edu.up.cs301.slapjack;
+package edu.up.cs301.slapjack.players;
 
-import android.util.Log;
-import edu.up.cs301.card.Card;
-import edu.up.cs301.card.Rank;
-import edu.up.cs301.game.GameFramework.GameComputerPlayer;
+import edu.up.cs301.slapjack.card.Card;
+import edu.up.cs301.slapjack.card.Rank;
+import edu.up.cs301.game.GameFramework.players.GameComputerPlayer;
 import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
-import edu.up.cs301.game.GameFramework.infoMessage.TimerInfo;
+import edu.up.cs301.slapjack.Deck;
+import edu.up.cs301.slapjack.sjActionMessage.SJPlayAction;
+import edu.up.cs301.slapjack.sjActionMessage.SJSlapAction;
+import edu.up.cs301.slapjack.infoMessage.SJState;
 
 /**
  * This is a computer player that slaps at an average rate given

@@ -1,4 +1,4 @@
-package edu.up.cs301.slapjack;
+package edu.up.cs301.slapjack.players;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -10,14 +10,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import edu.up.cs301.game.GameFramework.animation.AnimationSurface;
 import edu.up.cs301.game.GameFramework.animation.Animator;
-import edu.up.cs301.card.Card;
-import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.slapjack.card.Card;
+import edu.up.cs301.game.GameFramework.players.GameHumanPlayer;
 import edu.up.cs301.game.GameFramework.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
-import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 import edu.up.cs301.game.GameFramework.infoMessage.IllegalMoveInfo;
 import edu.up.cs301.game.GameFramework.infoMessage.NotYourTurnInfo;
+import edu.up.cs301.slapjack.sjActionMessage.SJPlayAction;
+import edu.up.cs301.slapjack.sjActionMessage.SJSlapAction;
+import edu.up.cs301.slapjack.infoMessage.SJState;
 
 /**
  * A GUI that allows a human to play Slapjack. Moves are made by clicking

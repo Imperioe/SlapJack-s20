@@ -1,6 +1,7 @@
-package edu.up.cs301.slapjack;
+package edu.up.cs301.slapjack.sjActionMessage;
 
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.game.GameFramework.players.GamePlayer;
+import edu.up.cs301.slapjack.sjActionMessage.SJMoveAction;
 
 /**
  * A SJPlayAction is an action that represents playing a card on the "up"

@@ -1,7 +1,10 @@
-package edu.up.cs301.slapjack;
+package edu.up.cs301.slapjack.infoMessage;
 
-import edu.up.cs301.card.Card;
+import edu.up.cs301.slapjack.card.Card;
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
+import edu.up.cs301.slapjack.Deck;
+
+import static edu.up.cs301.game.GameFramework.utilities.EqualityMethods.arrayEquals;
 
 /**
  * Contains the state of a Slapjack game.  Sent by the game when
@@ -119,4 +122,17 @@ public class SJState extends GameState
     		piles[2].add(c);
     	}
     }
+
+    public boolean equals(Object object){
+		if(! (object instanceof SJState)) return false;
+		SJState sjState = (SJState) object;
+		if ( this.toPlay == sjState.toPlay && arrayEquals(this.piles, sjState.piles)) return true;
+		return false;
+	}
+
+	///TESTING
+
+	public void setDeck(int idx, Deck deck){
+    	piles[idx] = deck;
+	}
 }
