@@ -12,6 +12,8 @@ import edu.up.cs301.slapjack.sjActionMessage.SJMoveAction;
  */
 public class SJSlapAction extends SJMoveAction
 {
+    //Tag for logging
+    private static final String TAG = "SJSlapAction";
 	private static final long serialVersionUID = 2134321631283669359L;
 
 	/**

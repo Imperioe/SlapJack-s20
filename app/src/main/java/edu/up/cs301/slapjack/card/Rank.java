@@ -98,6 +98,9 @@ public enum Rank implements Serializable {
 	KING
 	;
 
+	//Tag for logging
+	private static final String TAG = "Rank";
+
 	// to satisfy the Serializable interface
 	private static final long serialVersionUID = 893542931190030342L;
 

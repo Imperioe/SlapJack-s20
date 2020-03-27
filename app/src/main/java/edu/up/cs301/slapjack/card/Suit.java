@@ -25,6 +25,9 @@ public enum Suit implements Serializable {
 
 	;
 
+	//Tag for logging
+	private static final String TAG = "Suit";
+
 	// to satisfy the Serializable interface
 	private static final long serialVersionUID = 521100342061033418L;
 

@@ -21,7 +21,8 @@ import android.graphics.Color;
  * @version July 2013
  */
 public class SJMainActivity extends GameMainActivity {
-	
+	//Tag for logging
+	private static final String TAG = "SJMainActivity";
 	public static final int PORT_NUMBER = 4752;
 
 	/** a slapjack game for two players. The default is human vs. computer */

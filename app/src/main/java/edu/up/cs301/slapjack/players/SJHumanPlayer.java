@@ -31,6 +31,8 @@ import edu.up.cs301.slapjack.infoMessage.SJState;
  * @version January 2020
  */
 public class SJHumanPlayer extends GameHumanPlayer implements Animator {
+	//Tag for logging
+	private static final String TAG = "SJHumanPlayer";
 
 	// sizes and locations of card decks and cards, expressed as percentages
 	// of the screen height and width

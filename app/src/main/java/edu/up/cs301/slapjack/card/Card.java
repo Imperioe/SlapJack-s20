@@ -26,6 +26,8 @@ import android.graphics.RectF;
  * @version December 2016
  */
 public class Card implements Serializable {
+	//Tag for logging
+	private static final String TAG = "Card";
 
 	// to satisfy the Serializable interface
 	private static final long serialVersionUID = 893542931190030342L;

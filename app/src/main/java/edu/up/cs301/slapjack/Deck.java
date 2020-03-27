@@ -15,7 +15,8 @@ import static edu.up.cs301.game.GameFramework.utilities.EqualityMethods.arrayEqu
  *
  */
 public class Deck implements Serializable {
-
+	//Tag for logging
+	private static final String TAG = "Deck";
 	// to satisfy Serializable interface
 	private static final long serialVersionUID = 3216223171210121485L;
 	

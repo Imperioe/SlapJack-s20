@@ -18,6 +18,8 @@ import edu.up.cs301.slapjack.infoMessage.SJState;
  */
 public class SJComputerPlayer extends GameComputerPlayer
 {
+	//Tag for logging
+	private static final String TAG = "SJComputerPlayer";
 	// the minimum reaction time for this player, in milliseconds
 	private double minReactionTimeInMillis;
 	

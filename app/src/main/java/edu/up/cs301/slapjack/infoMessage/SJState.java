@@ -16,6 +16,8 @@ import static edu.up.cs301.game.GameFramework.utilities.EqualityMethods.arrayEqu
  */
 public class SJState extends GameState
 {
+	//Tag for logging
+	private static final String TAG = "SJState";
 	private static final long serialVersionUID = -8269749892027578792L;
 
     ///////////////////////////////////////////////////

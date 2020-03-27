@@ -17,7 +17,8 @@ import edu.up.cs301.slapjack.sjActionMessage.SJMoveAction;
  */
 
 public class SJLocalGame extends LocalGame {
-
+	//Tag for logging
+	private static final String TAG = "SJLocalGame";
     /**
      * Constructor for the SJLocalGame.
      */

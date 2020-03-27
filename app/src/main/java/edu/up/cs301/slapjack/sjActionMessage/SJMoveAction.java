@@ -11,7 +11,8 @@ import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
  * @version 2 July 2001
  */
 public abstract class SJMoveAction extends GameAction {
-	
+    //Tag for logging
+    private static final String TAG = "SJMoveAction";
 	private static final long serialVersionUID = -3107100271012188849L;
 
     /**
