@@ -8,6 +8,7 @@ import edu.up.cs301.game.GameFramework.players.GamePlayer;
 import edu.up.cs301.game.GameFramework.LocalGame;
 import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
 import edu.up.cs301.game.GameFramework.gameConfiguration.GamePlayerType;
+import edu.up.cs301.slapjack.infoMessage.SJState;
 import edu.up.cs301.slapjack.players.SJComputerPlayer;
 import edu.up.cs301.slapjack.players.SJHumanPlayer;
 
@@ -81,6 +82,7 @@ public class SJMainActivity extends GameMainActivity {
 
 	@Override
 	public LocalGame createLocalGame(GameState gameState) {
-		return new SJLocalGame();
+		if(gameState == null) return new SJLocalGame();
+		return new SJLocalGame((SJState) gameState);
 	}
 }

@@ -22,10 +22,18 @@ public class SJLocalGame extends LocalGame {
      * Constructor for the SJLocalGame.
      */
     public SJLocalGame() {
+    	super();
         Log.i("SJLocalGame", "creating game");
         // create the state for the beginning of the game
         super.state = new SJState();
     }
+
+	public SJLocalGame(SJState sjState) {
+		super();
+		Log.i("SJLocalGame", "creating game");
+		// create the state for the beginning of the game
+		super.state = new SJState(sjState);
+	}
 
 
     /**
